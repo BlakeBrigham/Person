@@ -1,20 +1,20 @@
 package sayHi;
 
-public class Person
+public class PersonAge
 {
 	String firstName;
-	String lname;
+	String lastName;
 	int age;
 	/** 
 	 * @param fname - First Name
 	 * @param lname - Last Name
 	 * @param age - age of person in years
 	 */
-	public Person(String fname, String lname, int age)
+	public PersonAge(String fname, String lname, int age)
 	{
 		super();
 		this.firstName = fname;
-		this.lname = lname;
+		this.lastName = lname;
 		this.age = age;
 	}
 
@@ -39,13 +39,13 @@ public class Person
 	 */
 	public String getLname()
 	{
-		return lname;
+		return lastName;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "Person: " + firstName + " " + lname + ", " + age;
+		return "Person: " + firstName + " " + lastName + ", " + age;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Person
 	 */
 	public void setLname(String lname)
 	{
-		this.lname = lname;
+		this.lastName = lname;
 	}
 
 	/**
@@ -74,9 +74,19 @@ public class Person
 
 	public static void main(String[] args)
 	{
-		Person p = new Person("Romeo", "Mon", 15);
+		PersonAge p = new PersonAge("Romeo", "Mon", 15);
 		
 		System.out.println("Person P= " + p);
+	}
+	
+	public PersonAge makePerson(PersonAge that) throws UnderAgeException
+	{
+		if(age<18 || that.age<18) 
+		{
+			throw new UnderAgeException();
+		}
+		PersonAge child = new PersonAge(this.firstName,that.lastName,0);
+		return child;
 	}
 	
 }
